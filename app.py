@@ -22,7 +22,7 @@ with open(MODEL_PATH, "rb") as f:
 
 @app.get("/")
 def home():
-    return {"message": "Fraud Detection API is running"}
+    return {"message": "This is Version 2. New Fraud Detection API is running"}
 
 
 @app.post("/predict")

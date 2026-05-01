@@ -1,0 +1,26 @@
+apiVersion: v1
+
+# service expose application running on a set of pods as a network service, allowing communication between different components of the application or with external clients
+kind: Service
+
+metadata:
+  name: fraud-api-service
+
+spec:
+  # nodeport exposesthe sevice on each node's IP at a static port (the NodePort), which allows external traffic to access the service. This is useful for development and testing, but for production environments, consider using LoadBalancer or Ingress for better scalability and security.
+  type: NodePort
+
+   # Selector defines which pods this service should connect to
+  selector:
+    app: fraud-api # this selector matches the label defined in the deployment, allowing the service to route traffic to the correct pods
+
+  # Defines networking rules for accessing the service
+  ports:
+    - protocol: TCP
+      port: 8000 # the port that the service will listen on, which clients will use to access the application
+      # port container is actually listening on
+      targetPort: 8000 # the port on the pods that the service will forward traffic to, matching the containerPort defined in the deployment
+
+      # External port exposed on each Node (used to access app from browser)
+      # Must be in range 30000–32767 in most Kubernetes setups
+      nodePort: 30007 # the port on each node that will be used to access the service from outside the cluster, allowing external clients to connect to the application through this port

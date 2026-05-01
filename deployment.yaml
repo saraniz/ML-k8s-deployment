@@ -1,0 +1,41 @@
+# Specifies the Kubernetes API version for Deployment objects
+apiVersion: apps/v1
+
+# Defines the type of Kubernetes resource (Deployment manages pods + scaling + updates)
+kind: Deployment 
+
+#metadata section contains the basic information about this deployment
+metadata:
+  #name of the deployment, used to identify it within the cluster
+  name: fraud-api-deployment
+
+# spec section defines the desired state of the deployment, including how many replicas and what template to use for the pods
+spec:
+  # number of identical pod replicas to run, ensuring high availability and load balancing
+  replicas: 1
+
+  # define how kubernetes should find the pods it manage
+  selector:
+    matchLabels:
+      app: fraud-api # this label is used to identify the pods that belong to this deployment
+
+  # template define the actual pod configuration that will be created by this deployment
+  template:
+    # metadata for the pods
+    metadata:
+      labels:
+        app: fraud-api # this label is used to identify the pods that belong to this deployment
+
+    # pod specification, defining the containers that will run in each pod
+    spec:
+      # list of ontainers that will run in the pod
+      containers:
+        - name: fraud-api-container #name of the container
+          image: fraud-api #docker image to use for this container, should be built and pushed to a registry before deployment
+
+          # "Never" means that Kubernetes will not attempt to pull the image from a registry, assuming it's already available on the node. This is useful for local development when you build the image on your machine and want to use it directly without pushing it to a registry.
+          imagePullPolicy: Never # tells Kubernetes not to pull the image from a registry, assuming it's already available on the node (useful for local development)
+
+          #ports exposed by the container, allowing communication with other services or external clients
+          ports:
+            - containerPort: 8000 # the port on which the application inside the container listens for incoming requests

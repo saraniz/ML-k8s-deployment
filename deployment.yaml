@@ -12,7 +12,7 @@ metadata:
 # spec section defines the desired state of the deployment, including how many replicas and what template to use for the pods
 spec:
   # number of identical pod replicas to run, ensuring high availability and load balancing
-  replicas: 1
+  replicas: 3
 
   # define how kubernetes should find the pods it manage
   selector:

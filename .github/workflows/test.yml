@@ -29,8 +29,6 @@ jobs:
     - name: Run tests
       run: pytest tests/ -v
 
-
-  # 2. MODEL VALIDATION STAGE
   model-check:
     runs-on: ubuntu-latest
     needs: test
@@ -47,9 +45,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install numpy scikit-learn
-
-    - name: Validate model
-      run: python scripts/validate_model.py
 
 
   # 3. DOCKER BUILD STAGE

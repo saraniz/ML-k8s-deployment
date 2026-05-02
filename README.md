@@ -15,13 +15,13 @@ An end-to-end fraud detection project that trains a machine learning model on th
 
 ```mermaid
 flowchart LR
-		A[creditcard.csv] --> B[Train pipeline]
-		B --> C[Save model artifact]
-		C --> D[FastAPI app]
-		D --> E[Docker image]
-		E --> F[Kubernetes Deployment]
-		F --> G[Kubernetes Service]
-		G --> H[Prediction endpoint]
+    A[creditcard.csv] --> B[Train pipeline]
+    B --> C[Save model artifact]
+    C --> D[FastAPI app]
+    D --> E[Docker image]
+    E --> F[Kubernetes Deployment]
+    F --> G[Kubernetes Service]
+    G --> H[Prediction endpoint]
 ```
 
 ## Repository Structure
@@ -37,8 +37,8 @@ ML-k8s-deployment/
 ├── data/
 │   └── creditcard.csv
 └── src/
-		├── pipeline.py
-		└── train.py
+    ├── pipeline.py
+    └── train.py
 ```
 
 ## Model Architecture

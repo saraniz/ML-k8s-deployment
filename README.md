@@ -1,7 +1,7 @@
 # Fraud Detection ML on Kubernetes
 
 <p align="center">
-  <img src="k8s.jpg" width="45%" /><br/>
+  <img src="k8s.jpg" width="95%" /><br/>
 </p>
 
 An end-to-end fraud detection project that trains a machine learning model on the credit card fraud dataset, stores the trained pipeline in AWS S3, serves predictions through a FastAPI application, packages the service in Docker, and deploys it on Kubernetes.

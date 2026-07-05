@@ -1,8 +1,9 @@
 # Fraud Detection ML on Kubernetes
 
 <p align="center">
-  <img src="k8s.jpg" width="95%" /><br/>
+  <img src="screenshots/1779432998251.jpg" alt="High-Level Architecture" width="95%" /><br/>
 </p>
+
 
 An end-to-end fraud detection project that trains a machine learning model on the credit card fraud dataset, stores the trained pipeline in AWS S3, serves predictions through a FastAPI application, packages the service in Docker, and deploys it on Kubernetes.
 
@@ -74,6 +75,9 @@ The FastAPI app in `app.py`:
 	- `fraud_prediction`
 	- `fraud_probability`
 
+![FastAPI Swagger UI Docs](screenshots/1779432993097.jpg)
+
+
 ### Runtime Requirements
 
 The API expects AWS credentials and access to the configured S3 bucket so it can download `artifacts/fraud_pipeline.pkl` when the app starts.
@@ -85,6 +89,8 @@ This project uses AWS S3 through `boto3` to load the saved model at startup.
 - The bucket name is `fraud-ml-model-storage-amie-2026`
 - The model key is `artifacts/fraud_pipeline.pkl`
 - You must provide valid AWS credentials before starting the API locally or in Docker
+
+![AWS S3 Bucket](screenshots/1779432994411.jpg)
 
 One common local setup is to configure credentials with the AWS CLI:
 
@@ -182,6 +188,8 @@ docker push amiezz/fraud-api:v1
 
 After pushing, update your Kubernetes deployment to use the Docker Hub image reference `amiezz/fraud-api:v1`.
 
+![Docker Hub Repository](screenshots/1779432994807.jpg)
+
 ## Kubernetes Deployment
 
 This project uses Minikube for local Kubernetes testing.
@@ -224,6 +232,8 @@ minikube service fraud-api-service
 ```
 
 If you are not using Minikube, use the external IP or load balancer address assigned to the service instead of `0.0.0.0`.
+
+![AWS EKS Cluster Status](screenshots/1779432993861.jpg)
 
 ## Kubernetes Concepts Used
 
